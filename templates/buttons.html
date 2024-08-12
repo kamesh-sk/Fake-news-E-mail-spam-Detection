@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Services</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            background-color: transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+        button:hover::before {
+            width: 0;
+            height: 0;
+        }
+        button span {
+            position: relative;
+            z-index: 1;
+        }
+        button.fake-news {
+            background-color: #007bff;
+        }
+        button.sentiment-analysis {
+            background-color: #6c5ce7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: black;">Welcome to AI Services</h1>
+        <p style="color: black;">Choose the AI service you want to use:</p>
+        <div class="button-container">
+            <form action="{{ url_for('fake_news_home') }}" method="POST">
+                <button type="submit" class="fake-news"><span>Fake News AI</span></button>
+            </form>
+            <form action="/sentiment-analysis" method="GET">
+                <button type="submit" class="sentiment-analysis"><span>Sentiment Analysis AI</span></button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
